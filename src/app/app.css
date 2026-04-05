@@ -1,0 +1,34 @@
+/* Layout for the main app box: keeps the page narrow and centered */
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Space below the main title */
+h1 {
+  margin-bottom: 20px;
+}
+
+/* The input area: lay inputs and button next to each other with gaps */
+.form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Basic padding for text and number inputs */
+input {
+  padding: 8px;
+}
+
+/* Make the button look clickable and give it some padding */
+button {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* Simple left padding for the list of expenses */
+ul {
+  padding-left: 20px;
+}
