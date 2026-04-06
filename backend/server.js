@@ -53,6 +53,18 @@ app.post('/expenses', (req, res) => {
   res.status(201).json(newExpense);
 });
 
+app.delete('/expenses/:index', (req, res) => {
+  const index = parseInt(req.params.index);
+
+  if (index < 0 || index >= expenses.length) {
+    return res.status(404).json({ error: 'Expense not found' });
+  }
+
+  expenses.splice(index, 1);
+  res.status(200).json({ message: 'Deleted' });
+});
+
+
 // Start the server and print where to reach it
 app.listen(PORT, () => {
   console.log(`Backend server running at http://localhost:${PORT}`);

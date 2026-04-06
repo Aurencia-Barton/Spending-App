@@ -1,41 +1,55 @@
 <!-- The main box for the whole app UI -->
 <div class="container">
-  <!-- The big title at the top -->
-  <h1>Spending Summary App</h1>
 
-  <!--
-    Add expense area:
-    - Type the money amount in the first box.
-    - Type the name or category (for example: Groceries) in the second box.
-    - Click Add to save that expense to the list below.
-  -->
-  <div class="form">
-    <input
-      type="number"
-      [(ngModel)]="amount"
-      placeholder="Enter amount"
-    />
+  <div class="app-card">
 
-    <input
-      type="text"
-      [(ngModel)]="category"
-      placeholder="Enter category"
-    />
+    <header class="header">
+      <h1>💸 Spend-Track App</h1>
+      <!-- The big title at the top -->
+      <p>Track your expenses in real-time!</p>
+    </header>
 
-    <!-- Click this to add what you typed into the list -->
-    <button (click)="addExpense()">Add Expense</button>
+    <!--
+      Add expense area:
+      - Type the money amount in the first box.
+      - Type the name or category (for example: Groceries) in the second box.
+      - Click Add to save that expense to the list below.
+    -->
+    <div class="form">
+      <input
+        #amountInput
+        type="number"
+        [(ngModel)]="amount"
+        (input)="amount = +amount!"
+        placeholder="Enter amount"
+      />
+
+      <input
+        type="text"
+        [(ngModel)]="category"
+        placeholder="Enter category"
+      />
+
+      <!-- Click this to add what you typed into the list -->
+      <button (click)="addExpense()" [disabled]="!amount || !category.trim()">
+        Add Expense
+      </button>
+    </div>
+
+
+    <!-- Shows the total dollar amount of all items in the list -->
+    <h2>Total: ${{ getTotal() }}</h2>
+
+    <!--
+      Saved expenses appear here in a simple list.
+      Each line shows the category and the amount you entered.
+    -->
+    <ul>
+      <li *ngFor="let expense of expenses; let i = index">
+        {{ expense.category }} - ${{ expense.amount }}
+        <button (click)="deleteExpense(i)">Delete</button>
+      </li>
+    </ul>
   </div>
-
-  <!-- Shows the total dollar amount of all items in the list -->
-  <h2>Total: ${{ getTotal() }}</h2>
-
-  <!--
-    Saved expenses appear here in a simple list.
-    Each line shows the category and the amount you entered.
-  -->
-  <ul>
-    <li *ngFor="let expense of expenses">
-      {{ expense.category }} - ${{ expense.amount }}
-    </li>
-  </ul>
 </div>
+

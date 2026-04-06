@@ -5,6 +5,36 @@
   font-family: Arial, sans-serif;
 }
 
+.app-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.header {
+  background: linear-gradient(to right, #1f7a5a, #28a745); /* gradient from dark to bright green */
+  color: white;
+  padding: 20px;
+  border-radius: 10px 10px 0 0; /* only top corners rounded */
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+}
+
+.header h1 {
+  font-size: 32px;
+  letter-spacing: 1px; /* slight spacing between letters for a cleaner look */
+  margin: 0;
+  color: white;
+}
+
+.header p {
+  margin: 5px 0 0;
+  color: #dcdcdc;
+}
+
 /* Space below the main title */
 h1 {
   margin-bottom: 20px;
@@ -31,4 +61,15 @@ button {
 /* Simple left padding for the list of expenses */
 ul {
   padding-left: 20px;
+}
+/* Style for disabled button: make it look faded and not clickable */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #eef2f3, #dfe9f3);
 }

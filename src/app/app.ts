@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ViewChild, ElementRef } from '@angular/core';
 
 // One expense item: how much and what it's for
 interface Expense {
@@ -21,6 +22,8 @@ interface Expense {
   styleUrl: './app.css'
 })
 export class App {
+
+  @ViewChild('amountInput') amountInput!: ElementRef; // This allows us to directly access the amount input field in the template, so we can clear it or focus it after adding an expense.
 
   constructor(private http: HttpClient) {} //sets up dependenccies so we can call the backend API
   // The saved expenses start empty and grow as the user adds items
@@ -54,7 +57,16 @@ export class App {
     this.amount = null;
     this.category = '';
 
+    this.amountInput.nativeElement.focus(); // After adding an expense, we set the focus back to the amount input field so the user can quickly add another item without having to click on the input box again.
+
   }
+  
+  deleteExpense(index: number) {
+  this.http.delete(`http://localhost:3000/expenses/${index}`)
+    .subscribe(() => {
+      this.loadExpenses();
+    });
+}
 
   // Adds up all expense amounts and gives back the total number
   getTotal(): number {
